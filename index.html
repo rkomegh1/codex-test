@@ -3,102 +3,190 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FreshBite | Fresh Food, Fast</title>
+    <title>On2Cook Recipe Catalog</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- Site header with logo and primary navigation -->
+    <!-- Sticky top navigation -->
     <header class="site-header">
       <div class="container header-content">
-        <a class="logo" href="#home">FreshBite</a>
-        <nav class="nav" aria-label="Primary navigation">
-          <a href="#home">Home</a>
-          <a href="#menu">Menu</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+        <div class="brand">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <div>
+            <p class="brand-eyebrow">Customer Support</p>
+            <p class="brand-name">On2Cook Recipes</p>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Primary">
+          <a href="#recipes">Recipes</a>
+          <a href="#filters">Filters</a>
+          <a href="#support">Support</a>
         </nav>
+        <button class="ghost-button" type="button">Sign In</button>
       </div>
     </header>
 
-    <main class="page">
-      <!-- Hero section introducing the brand and CTA -->
-      <section id="home" class="hero">
+    <main>
+      <!-- Hero -->
+      <section class="hero">
         <div class="container hero-content">
-          <div>
-            <p class="eyebrow">Fresh, fast, and made for you</p>
-            <h1>Healthy meals delivered in minutes, not hours.</h1>
+          <div class="hero-text">
+            <p class="eyebrow">Recipe Library</p>
+            <h1>Find every On2Cook recipe in one smart, searchable catalog.</h1>
             <p class="hero-description">
-              FreshBite pairs chef-crafted recipes with locally sourced ingredients
-              to keep you energized and satisfied all day long.
+              Filter by meal type, sort by time or calories, and explore all 400 recipes
+              curated by our culinary support team.
             </p>
-            <a class="primary-button" href="#menu">Order Your First Box</a>
+            <div class="hero-stats">
+              <div>
+                <p class="stat-label">Total Recipes</p>
+                <p class="stat-value" id="recipe-count">400</p>
+              </div>
+              <div>
+                <p class="stat-label">Avg. Cook Time</p>
+                <p class="stat-value">24 min</p>
+              </div>
+              <div>
+                <p class="stat-label">Collections</p>
+                <p class="stat-value">12</p>
+              </div>
+            </div>
           </div>
-          <div class="hero-card" aria-label="Featured menu item">
-            <p class="hero-card-title">Today’s highlight</p>
-            <h2>Harvest Bowl</h2>
-            <p class="hero-card-copy">
-              Roasted sweet potato, citrus greens, quinoa, and a lemon-tahini drizzle.
+          <div class="hero-card">
+            <p class="hero-card-title">Featured Recipe</p>
+            <h2>Sunny Citrus Grain Bowl</h2>
+            <p>
+              Bright, fresh, and balanced with roasted veggies, herbs, and a lemon vinaigrette.
             </p>
+            <div class="badge-row">
+              <span class="badge">22 min</span>
+              <span class="badge">390 kcal</span>
+              <span class="badge">Vegetarian</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Feature cards highlighting product benefits -->
-      <section id="menu" class="features">
+      <!-- Filters -->
+      <section id="filters" class="controls">
+        <div class="container controls-grid">
+          <div>
+            <h2>Search & filter recipes</h2>
+            <p>
+              Narrow by category, sort by cook time or calories, and quickly locate any
+              recipe in the catalog.
+            </p>
+          </div>
+          <div class="filters">
+            <label class="field">
+              <span>Search</span>
+              <input id="search-input" type="search" placeholder="Search by recipe name" />
+            </label>
+            <label class="field">
+              <span>Category</span>
+              <select id="category-select">
+                <option value="all">All categories</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Snack">Snack</option>
+                <option value="Dessert">Dessert</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Sort by</span>
+              <select id="sort-select">
+                <option value="featured">Featured</option>
+                <option value="time">Cook time</option>
+                <option value="calories">Calories</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recipes -->
+      <section id="recipes" class="recipes">
         <div class="container">
-          <h2>Why FreshBite works</h2>
-          <div class="feature-grid">
-            <article class="feature-card">
-              <h3>Ingredient-first menus</h3>
-              <p>
-                Seasonal ingredients drive each menu so every bite feels bright and fresh.
-              </p>
-            </article>
-            <article class="feature-card">
-              <h3>Ready in 12 minutes</h3>
-              <p>
-                Heat, plate, and enjoy. Our meals are prepped for a fast, flavorful finish.
-              </p>
-            </article>
-            <article class="feature-card">
-              <h3>Plans that flex</h3>
-              <p>
-                Pause, skip, or swap anytime. FreshBite adapts to your schedule.
-              </p>
-            </article>
+          <div class="section-header">
+            <h2>All recipes</h2>
+            <p id="results-count">Showing 400 recipes</p>
           </div>
-        </div>
-      </section>
-
-      <!-- About section for brand story -->
-      <section id="about" class="about">
-        <div class="container about-content">
-          <h2>Built for busy, mindful eaters</h2>
-          <p>
-            FreshBite was founded by nutritionists and culinary experts who wanted better
-            options for busy days. We focus on balanced macros, vibrant flavors, and a
-            delightful unboxing experience.
-          </p>
-        </div>
-      </section>
-
-      <!-- Contact section with quick info -->
-      <section id="contact" class="contact">
-        <div class="container contact-content">
-          <h2>Stay in the loop</h2>
-          <p>
-            Questions about menus or delivery windows? We’re here to help at
-            <a href="mailto:hello@freshbite.com">hello@freshbite.com</a>.
-          </p>
+          <div id="recipe-grid" class="recipe-grid"></div>
         </div>
       </section>
     </main>
 
-    <!-- Footer with copyright text -->
-    <footer class="site-footer">
-      <div class="container">
-        <p>© 2024 FreshBite. All rights reserved.</p>
+    <!-- Footer -->
+    <footer id="support" class="site-footer">
+      <div class="container footer-content">
+        <div>
+          <h3>Need support?</h3>
+          <p>Email the team at support@on2cook.com</p>
+        </div>
+        <p>© 2024 On2Cook. All rights reserved.</p>
       </div>
     </footer>
+
+    <!-- JS -->
+    <script>
+      const categories = ["Breakfast", "Lunch", "Dinner", "Snack", "Dessert"];
+      const tags = ["Vegan", "Gluten-Free", "High-Protein", "Family", "Quick"];
+
+      const recipeData = Array.from({ length: 400 }, (_, i) => ({
+        id: i + 1,
+        category: categories[i % categories.length],
+        cookTime: 12 + (i % 30),
+        calories: 280 + (i % 220),
+        tag: tags[i % tags.length],
+        name: `${categories[i % categories.length]} Recipe ${String(i + 1).padStart(3, "0")}`,
+        description: "Balanced flavors with fresh ingredients and a satisfying finish.",
+      }));
+
+      const grid = document.getElementById("recipe-grid");
+      const count = document.getElementById("results-count");
+      const search = document.getElementById("search-input");
+      const category = document.getElementById("category-select");
+      const sort = document.getElementById("sort-select");
+
+      function render(recipes) {
+        grid.innerHTML = "";
+        recipes.forEach(r => {
+          const card = document.createElement("article");
+          card.className = "recipe-card";
+          card.innerHTML = `
+            <div class="recipe-card-header">
+              <span class="recipe-category">${r.category}</span>
+              <span class="recipe-id">#${String(r.id).padStart(3, "0")}</span>
+            </div>
+            <h3>${r.name}</h3>
+            <p>${r.description}</p>
+            <div class="badge-row">
+              <span class="badge">${r.cookTime} min</span>
+              <span class="badge">${r.calories} kcal</span>
+              <span class="badge">${r.tag}</span>
+            </div>`;
+          grid.appendChild(card);
+        });
+        count.textContent = `Showing ${recipes.length} recipes`;
+      }
+
+      function apply() {
+        let data = recipeData.filter(r =>
+          r.name.toLowerCase().includes(search.value.toLowerCase()) &&
+          (category.value === "all" || r.category === category.value)
+        );
+        if (sort.value === "time") data.sort((a,b)=>a.cookTime-b.cookTime);
+        if (sort.value === "calories") data.sort((a,b)=>a.calories-b.calories);
+        render(data);
+      }
+
+      [search, category, sort].forEach(el => {
+        el.addEventListener("input", apply);
+        el.addEventListener("change", apply);
+      });
+
+      render(recipeData);
+    </script>
   </body>
 </html>
