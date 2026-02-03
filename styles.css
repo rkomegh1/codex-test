@@ -1,17 +1,22 @@
-/* Base layout and theme tokens */
+/* ===== Base theme ===== */
 :root {
   color-scheme: light;
   font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+
   --text-dark: #1a1f2b;
   --text-muted: #5b6478;
+
   --primary: #1f7aed;
   --primary-dark: #165fc0;
+
   --surface: #ffffff;
   --surface-alt: #f3f6fb;
+
   --border: rgba(26, 31, 43, 0.08);
   --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
 }
 
+/* ===== Reset ===== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -34,7 +39,7 @@ a {
   margin: 0 auto;
 }
 
-/* Header */
+/* ===== Header ===== */
 .site-header {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
@@ -57,18 +62,6 @@ a {
   align-items: center;
   gap: 0.6rem;
   font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.brand-eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.65rem;
-  color: var(--text-muted);
-}
-
-.brand-name {
-  font-size: 1.1rem;
 }
 
 .brand-dot {
@@ -79,16 +72,26 @@ a {
   box-shadow: 0 0 0 6px rgba(31, 122, 237, 0.15);
 }
 
+.brand-eyebrow {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+}
+
+.brand-name {
+  font-size: 1.1rem;
+}
+
 .nav {
   display: flex;
   gap: 1.25rem;
   flex-wrap: wrap;
-  color: var(--text-muted);
   font-weight: 500;
+  color: var(--text-muted);
 }
 
-.nav a:hover,
-.nav a:focus-visible {
+.nav a:hover {
   color: var(--primary);
 }
 
@@ -102,13 +105,12 @@ a {
   font-weight: 600;
 }
 
-.ghost-button:hover,
-.ghost-button:focus-visible {
+.ghost-button:hover {
   border-color: var(--primary);
   color: var(--primary);
 }
 
-/* Hero */
+/* ===== Hero ===== */
 .hero {
   padding: 4rem 0 3rem;
   background: var(--surface);
@@ -121,18 +123,18 @@ a {
   align-items: center;
 }
 
+.eyebrow {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
 .hero-text h1 {
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   line-height: 1.2;
-  margin-bottom: 1rem;
-}
-
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--primary);
   margin-bottom: 1rem;
 }
 
@@ -174,7 +176,7 @@ a {
   margin-bottom: 1rem;
 }
 
-/* Controls */
+/* ===== Filters ===== */
 .controls {
   padding: 3rem 0;
 }
@@ -216,24 +218,18 @@ a {
   font-size: 1rem;
 }
 
-.field input:focus,
-.field select:focus {
-  outline: 2px solid rgba(31, 122, 237, 0.2);
-  border-color: var(--primary);
-}
-
-/* Recipes */
+/* ===== Recipes ===== */
 .recipes {
   padding: 2rem 0 4rem;
 }
 
 .section-header {
   display: flex;
-  align-items: baseline;
   justify-content: space-between;
-  flex-wrap: wrap;
+  align-items: baseline;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .section-header p {
@@ -274,8 +270,8 @@ a {
 
 .badge-row {
   display: flex;
-  flex-wrap: wrap;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .badge {
@@ -284,10 +280,9 @@ a {
   background: rgba(31, 122, 237, 0.12);
   color: var(--primary-dark);
   font-size: 0.75rem;
-  font-weight: 600;
 }
 
-/* Footer */
+/* ===== Footer ===== */
 .site-footer {
   background: #111827;
   color: #f9fafb;
@@ -298,18 +293,19 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .footer-content p {
   color: rgba(249, 250, 251, 0.8);
 }
 
-/* Responsive tweaks */
+/* ===== Responsive ===== */
 @media (max-width: 720px) {
   .header-content {
     justify-content: center;
+    text-align: center;
   }
 
   .nav {

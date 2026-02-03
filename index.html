@@ -27,7 +27,7 @@
     </header>
 
     <main>
-      <!-- Hero introduction -->
+      <!-- Hero -->
       <section class="hero">
         <div class="container hero-content">
           <div class="hero-text">
@@ -67,29 +67,24 @@
         </div>
       </section>
 
-      <!-- Search and filters -->
+      <!-- Filters -->
       <section id="filters" class="controls">
         <div class="container controls-grid">
           <div>
-            <h2>Search &amp; filter recipes</h2>
+            <h2>Search & filter recipes</h2>
             <p>
-              Use the controls to narrow by category, sort by cook time or calories, and
-              quickly locate any recipe in the catalog.
+              Narrow by category, sort by cook time or calories, and quickly locate any
+              recipe in the catalog.
             </p>
           </div>
           <div class="filters">
             <label class="field">
               <span>Search</span>
-              <input
-                id="search-input"
-                type="search"
-                placeholder="Search by recipe name"
-                aria-label="Search recipes"
-              />
+              <input id="search-input" type="search" placeholder="Search by recipe name" />
             </label>
             <label class="field">
               <span>Category</span>
-              <select id="category-select" aria-label="Filter by category">
+              <select id="category-select">
                 <option value="all">All categories</option>
                 <option value="Breakfast">Breakfast</option>
                 <option value="Lunch">Lunch</option>
@@ -100,7 +95,7 @@
             </label>
             <label class="field">
               <span>Sort by</span>
-              <select id="sort-select" aria-label="Sort recipes">
+              <select id="sort-select">
                 <option value="featured">Featured</option>
                 <option value="time">Cook time</option>
                 <option value="calories">Calories</option>
@@ -110,7 +105,7 @@
         </div>
       </section>
 
-      <!-- Recipe grid -->
+      <!-- Recipes -->
       <section id="recipes" class="recipes">
         <div class="container">
           <div class="section-header">
@@ -127,86 +122,71 @@
       <div class="container footer-content">
         <div>
           <h3>Need support?</h3>
-          <p>Email the team at support@on2cook.com for assistance.</p>
+          <p>Email the team at support@on2cook.com</p>
         </div>
         <p>© 2024 On2Cook. All rights reserved.</p>
       </div>
     </footer>
 
-    <!-- Generate 400 recipes and apply filters -->
+    <!-- JS -->
     <script>
       const categories = ["Breakfast", "Lunch", "Dinner", "Snack", "Dessert"];
       const tags = ["Vegan", "Gluten-Free", "High-Protein", "Family", "Quick"];
 
-      const recipeData = Array.from({ length: 400 }, (_, index) => {
-        const category = categories[index % categories.length];
-        const cookTime = 12 + (index % 30);
-        const calories = 280 + (index % 220);
-        return {
-          id: index + 1,
-          name: `${category} Recipe ${String(index + 1).padStart(3, "0")}`,
-          category,
-          cookTime,
-          calories,
-          tag: tags[index % tags.length],
-          description:
-            "Balanced flavors with fresh ingredients and a satisfying finish.",
-        };
-      });
+      const recipeData = Array.from({ length: 400 }, (_, i) => ({
+        id: i + 1,
+        category: categories[i % categories.length],
+        cookTime: 12 + (i % 30),
+        calories: 280 + (i % 220),
+        tag: tags[i % tags.length],
+        name: `${categories[i % categories.length]} Recipe ${String(i + 1).padStart(3, "0")}`,
+        description: "Balanced flavors with fresh ingredients and a satisfying finish.",
+      }));
 
-      const recipeGrid = document.getElementById("recipe-grid");
-      const resultsCount = document.getElementById("results-count");
-      const searchInput = document.getElementById("search-input");
-      const categorySelect = document.getElementById("category-select");
-      const sortSelect = document.getElementById("sort-select");
+      const grid = document.getElementById("recipe-grid");
+      const count = document.getElementById("results-count");
+      const search = document.getElementById("search-input");
+      const category = document.getElementById("category-select");
+      const sort = document.getElementById("sort-select");
 
-      const renderRecipes = (recipes) => {
-        recipeGrid.innerHTML = "";
-        recipes.forEach((recipe) => {
+      function render(recipes) {
+        grid.innerHTML = "";
+        recipes.forEach(r => {
           const card = document.createElement("article");
           card.className = "recipe-card";
           card.innerHTML = `
             <div class="recipe-card-header">
-              <span class="recipe-category">${recipe.category}</span>
-              <span class="recipe-id">#${String(recipe.id).padStart(3, "0")}</span>
+              <span class="recipe-category">${r.category}</span>
+              <span class="recipe-id">#${String(r.id).padStart(3, "0")}</span>
             </div>
-            <h3>${recipe.name}</h3>
-            <p>${recipe.description}</p>
+            <h3>${r.name}</h3>
+            <p>${r.description}</p>
             <div class="badge-row">
-              <span class="badge">${recipe.cookTime} min</span>
-              <span class="badge">${recipe.calories} kcal</span>
-              <span class="badge">${recipe.tag}</span>
-            </div>
-          `;
-          recipeGrid.appendChild(card);
+              <span class="badge">${r.cookTime} min</span>
+              <span class="badge">${r.calories} kcal</span>
+              <span class="badge">${r.tag}</span>
+            </div>`;
+          grid.appendChild(card);
         });
-        resultsCount.textContent = `Showing ${recipes.length} recipes`;
-      };
+        count.textContent = `Showing ${recipes.length} recipes`;
+      }
 
-      const applyFilters = () => {
-        const query = searchInput.value.toLowerCase();
-        const category = categorySelect.value;
-        let filtered = recipeData.filter((recipe) => {
-          const matchesQuery = recipe.name.toLowerCase().includes(query);
-          const matchesCategory = category === "all" || recipe.category === category;
-          return matchesQuery && matchesCategory;
-        });
+      function apply() {
+        let data = recipeData.filter(r =>
+          r.name.toLowerCase().includes(search.value.toLowerCase()) &&
+          (category.value === "all" || r.category === category.value)
+        );
+        if (sort.value === "time") data.sort((a,b)=>a.cookTime-b.cookTime);
+        if (sort.value === "calories") data.sort((a,b)=>a.calories-b.calories);
+        render(data);
+      }
 
-        if (sortSelect.value === "time") {
-          filtered = filtered.sort((a, b) => a.cookTime - b.cookTime);
-        } else if (sortSelect.value === "calories") {
-          filtered = filtered.sort((a, b) => a.calories - b.calories);
-        }
-
-        renderRecipes(filtered);
-      };
-
-      [searchInput, categorySelect, sortSelect].forEach((input) => {
-        input.addEventListener("input", applyFilters);
-        input.addEventListener("change", applyFilters);
+      [search, category, sort].forEach(el => {
+        el.addEventListener("input", apply);
+        el.addEventListener("change", apply);
       });
 
-      renderRecipes(recipeData);
+      render(recipeData);
     </script>
   </body>
 </html>
