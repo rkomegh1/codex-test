@@ -3,20 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>On2Cook Recipes | FreshBite Collection</title>
+    <title>On2Cook Recipe Catalog</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- Top navigation and brand bar -->
+    <!-- Sticky top navigation -->
     <header class="site-header">
       <div class="container header-content">
         <div class="brand">
           <span class="brand-dot" aria-hidden="true"></span>
-          <span class="brand-name">On2Cook Recipes</span>
+          <div>
+            <p class="brand-eyebrow">Customer Support</p>
+            <p class="brand-name">On2Cook Recipes</p>
+          </div>
         </div>
-        <nav class="nav" aria-label="Primary navigation">
+        <nav class="nav" aria-label="Primary">
           <a href="#recipes">Recipes</a>
-          <a href="#collections">Collections</a>
+          <a href="#filters">Filters</a>
           <a href="#support">Support</a>
         </nav>
         <button class="ghost-button" type="button">Sign In</button>
@@ -24,16 +27,15 @@
     </header>
 
     <main>
-      <!-- Hero and search controls -->
+      <!-- Hero introduction -->
       <section class="hero">
         <div class="container hero-content">
           <div class="hero-text">
-            <p class="eyebrow">Customer Support Collection</p>
-            <h1>Explore all 400 curated recipes designed for smarter cooking.</h1>
+            <p class="eyebrow">Recipe Library</p>
+            <h1>Find every On2Cook recipe in one smart, searchable catalog.</h1>
             <p class="hero-description">
-              Browse our full recipe catalog, filter by category, and quickly find the
-              perfect meal for any moment. Every recipe includes prep time, nutrition, and
-              cooking tips.
+              Filter by meal type, sort by time or calories, and explore all 400 recipes
+              curated by our culinary support team.
             </p>
             <div class="hero-stats">
               <div>
@@ -52,43 +54,42 @@
           </div>
           <div class="hero-card">
             <p class="hero-card-title">Featured Recipe</p>
-            <h2>Golden Ginger Noodle Bowl</h2>
+            <h2>Sunny Citrus Grain Bowl</h2>
             <p>
-              A comforting bowl packed with veggies, toasted sesame oil, and a splash of
-              citrus broth.
+              Bright, fresh, and balanced with roasted veggies, herbs, and a lemon vinaigrette.
             </p>
             <div class="badge-row">
-              <span class="badge">20 min</span>
-              <span class="badge">420 kcal</span>
-              <span class="badge">Vegan</span>
+              <span class="badge">22 min</span>
+              <span class="badge">390 kcal</span>
+              <span class="badge">Vegetarian</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Filters and list controls -->
-      <section id="collections" class="controls">
+      <!-- Search and filters -->
+      <section id="filters" class="controls">
         <div class="container controls-grid">
           <div>
-            <h2>Find your next meal</h2>
+            <h2>Search &amp; filter recipes</h2>
             <p>
-              Use the search and filters below to explore breakfast ideas, quick lunches,
-              or high-protein dinners.
+              Use the controls to narrow by category, sort by cook time or calories, and
+              quickly locate any recipe in the catalog.
             </p>
           </div>
           <div class="filters">
             <label class="field">
-              <span>Search recipes</span>
+              <span>Search</span>
               <input
                 id="search-input"
                 type="search"
-                placeholder="Search by name or ingredient"
+                placeholder="Search by recipe name"
                 aria-label="Search recipes"
               />
             </label>
             <label class="field">
               <span>Category</span>
-              <select id="category-select" aria-label="Recipe category">
+              <select id="category-select" aria-label="Filter by category">
                 <option value="all">All categories</option>
                 <option value="Breakfast">Breakfast</option>
                 <option value="Lunch">Lunch</option>
@@ -98,7 +99,7 @@
               </select>
             </label>
             <label class="field">
-              <span>Sort</span>
+              <span>Sort by</span>
               <select id="sort-select" aria-label="Sort recipes">
                 <option value="featured">Featured</option>
                 <option value="time">Cook time</option>
@@ -125,17 +126,18 @@
     <footer id="support" class="site-footer">
       <div class="container footer-content">
         <div>
-          <h3>Need help?</h3>
-          <p>Reach our culinary support team at support@on2cook.com.</p>
+          <h3>Need support?</h3>
+          <p>Email the team at support@on2cook.com for assistance.</p>
         </div>
         <p>© 2024 On2Cook. All rights reserved.</p>
       </div>
     </footer>
 
-    <!-- Simple script to render 400 recipes and filters -->
+    <!-- Generate 400 recipes and apply filters -->
     <script>
       const categories = ["Breakfast", "Lunch", "Dinner", "Snack", "Dessert"];
       const tags = ["Vegan", "Gluten-Free", "High-Protein", "Family", "Quick"];
+
       const recipeData = Array.from({ length: 400 }, (_, index) => {
         const category = categories[index % categories.length];
         const cookTime = 12 + (index % 30);

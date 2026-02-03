@@ -60,6 +60,17 @@ a {
   font-size: 1.1rem;
 }
 
+.brand-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.brand-name {
+  font-size: 1.1rem;
+}
+
 .brand-dot {
   width: 12px;
   height: 12px;
